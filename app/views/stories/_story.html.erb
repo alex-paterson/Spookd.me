@@ -1,0 +1,80 @@
+<% if story.verified %>
+	<style>
+		.ghost<%=story.id%> {
+			fill: #3CB2E2 !important;
+		}
+	</style>
+	<% ghost_class = "ghost ghost#{story.id}" %>
+<% else %>
+	<% ghost_class = "ghost" %>
+<% end %>
+
+<% @pictures = story.pictures.limit(3) %>
+<%if @pictures.count < 3 %>
+	<%avatar_present = true%>
+<%else%>
+	<%avatar_present = false%>
+<%end%>
+
+<div class="story" align="left">
+	<div class="header" <%if avatar_present%>style="padding-bottom: 85px;"<%end%>>
+
+		<div>
+			<a href="<%=story_url(story)%>">
+				<h2 style="color: white"><%=story.username.upcase%></h2>
+			</a>
+			<%= inline_svg'ghost.svg', class: ghost_class %>
+		</div>
+		<% if avatar_present %>
+			<a href="<%=story_url(story)%>">
+				<a href="<%=story_url(story)%>">
+					<div class="profile-pic" style="background-image: url(<%=story.avatar.url(:thumb)%>)" >
+					</div>
+				</a>
+			</a>
+		<% end %>
+
+	</div>
+	<div class="previews">
+
+	<% if !avatar_present %>
+		<% @pictures.each do |pic| %>
+			<div class="img" style="background-image: url(<%=pic.avatar.url(:thumb)%>)"></div>
+		<% end %>
+	<% end %>
+
+	</div>
+	<div class="description" <%if avatar_present%>style="padding-top: 85px;"<%end%>>
+
+		<h3><%=story.fullname%></h3>
+		<% if story.followers %>
+			<div><b>ESTIMATED FOLLOWERS:</b> story.followers</div>
+		<% end%>
+		<% if story.frequency %>
+			<div><b>SNAPS/DAY:</b> story.frequency</div>
+		<% end%>
+		<p><%=truncate(story.description, length: 190, omission: "... <a href=\'#{story_url(story)}\'>(more)</a>", escape: false)%></p>
+
+	</div>
+	<div class="footer">
+
+		<% if story.tags.count > 0 %>
+			<% story.tags.take(8).each do |tag| %>
+				<a href="<%=tag_url(tag)%>"><span><p><%=tag.name%></p></span></a>
+			<% end %>
+		<% else %>
+				<span><p style="color: white;">No Tags</p></span>
+		<% end %>
+
+	</div>
+	<% if current_user %>
+		<% if current_user == story.user || current_user.admin %>
+			<div class="editbutton">
+				<a href="<%=edit_story_url(story)%>">
+					<i class="fa fa-edit"></i>
+				</a>
+			</div>
+		<% end %>
+	<% end %>
+
+</div>

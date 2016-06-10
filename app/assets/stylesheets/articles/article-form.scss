@@ -1,0 +1,111 @@
+.new-article-form {
+	max-width: 800px;
+	background-color: #9B5D9C;
+	text-align: left;
+	font-family: Walkway;
+	margin-bottom: 20px;
+	.pad {
+		padding: 20px 40px 0px 40px;
+	}
+	.field {
+		color: white;
+		margin: 20px 0px;
+		input, textarea {
+			background-color: transparent;
+			border: none;
+			color: white;
+			&[type="text"] {
+				width: 100%;
+				border-bottom: 2px solid white;
+				margin-bottom: 10px;
+				background-color: rgba(255,255,255,0.4);
+				font-size: 1.3em;
+			}
+			&[type="number"] {
+				font-size: 1.3em;
+				width: 100px;
+				background-color: rgba(255,255,255,0.4);
+			}
+		}
+		label {
+			color: white;
+			display: inline-block;
+			min-width: 80px;
+		}
+		textarea {
+			color: white;
+			font-size: 1.1em;
+			border-left: 2px solid white;
+			width: 100%;
+			padding-left: 3px;
+			margin-bottom: 5px;
+			background-color: rgba(255,255,255,0.4);
+			min-height: 200px;
+		}
+	}
+	input {
+		display: inline-block;
+		&[type="submit"] {
+			background-color: #489B7A;
+			width: 100%;
+			font-size: 2em;
+			color: white;
+			border: none;
+			padding: 10px 0px;
+			margin-top: 20px;
+		}
+	}
+	#tags {
+		margin-bottom: 20px;
+		color: white;
+		margin-top: 5px;
+		background-color: rgba(255,255,255,0.4);
+		.tagit-choice {
+			background-color: #489B7A;
+			border-color: white;
+			&:hover {
+				border-color: white;
+				border-color: #DDD;
+			}
+			.tagit-label {
+				color: white;
+			}
+			.text-icon {
+				color: white;
+				&:hover {
+					color: #DDD;
+				}
+			}
+		}
+		.tagit-new {
+			input.ui-widget-content {
+				color: white;
+			}
+		}
+		input[type="text"] {
+			width: 100%;
+			border: none;
+			margin-bottom: 0px;
+			background-color: transparent;
+		}
+	}
+}
+#delete-article-container {
+	margin-bottom: 30px;
+	font-family: Walkway;
+	#delete-article-form {
+		width: 100%;
+		max-width: 800px;
+	}
+	
+	input#delete-article-button {
+		width: 100%;
+		max-width: 800px;
+		background-color: #ae2c2b;
+		font-size: 2em;
+		color: white;
+		border: none;
+		padding: 10px 0px;
+
+	}
+}

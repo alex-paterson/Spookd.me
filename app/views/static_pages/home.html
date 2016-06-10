@@ -1,0 +1,33 @@
+<% provide(:title, "Home") %>
+
+<div class="home" style="background-color: #EEE">
+	<!-- <div class="content-pad" style="background-color: white;" align="center">
+		<form action="<%= search_url %>" id="home-search">
+			<i class="fa fa-search"></i><input type="text" name="q" style="opacity: 1;" placeholder="stories, articles, screenshots...">
+		</form>
+	</div> -->
+
+	<div class="content-pad" style="background-color: white;" align="center">
+		<%= render 'shared/ad' %>
+	</div>
+
+	<div class="content-pad" style="background-color: white; padding-bottom: 30px;">
+		<div class="row">
+			<div class="headline-article">
+				<%= render(partial: 'articles/article', locals: {article: @headline_article}) %>
+			</div>
+			<div class="headline-story" align="center">
+				<%= render(partial: 'stories/story', locals: {story: @headline_story}) %>
+			</div>
+		</div>
+
+		<% if @second_row_stories && @second_row_articles %>
+			<%= render partial: 'static_pages/ad_st_art', locals: {stories: @second_row_stories, articles: @second_row_articles}%>
+		<% end %>
+
+		<% if @third_row_stories %>
+			<%= render partial: 'static_pages/st_st_st', locals: {stories: @third_row_stories}%>
+		<% end %>
+
+	</div>
+</div>

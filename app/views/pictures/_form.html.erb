@@ -1,0 +1,51 @@
+<div align="center">
+  <div class="new-picture-form">
+    <%= form_for(@picture) do |f| %>
+      <div class="pad">
+        <% if @picture.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
+
+            <ul>
+            <% @picture.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :title %><br>
+          <%= f.text_field :title %>
+        </div>
+        <div class="field">
+          <%= f.label :description %><br>
+          <%= f.text_field :description %>
+        </div>
+        <div class="field">
+          <%= f.label :avatar, "Screenshot Image" %><br>
+          <%= f.file_field :avatar %>
+        </div>
+        <input name="picture[story_id]" type="hidden" value="<%=params[:story]||@picture.story.id%>" />
+        <input name="picture[username]" type="hidden" value="<%=@username%>" />
+        <div class="field">
+          <%= f.label :time_taken, "Date Taken" %><br>
+          <%= f.date_field :time_taken %>
+        </div>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $("input[type='text']").change(function() {
+    $(this).css('background-color', 'rgba(255,255,255,0.1)')
+  })
+
+  $("input[type='date']").change(function() {
+    $(this).css('background-color', 'rgba(255,255,255,0.)')
+  })
+</script>

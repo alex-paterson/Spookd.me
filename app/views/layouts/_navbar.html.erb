@@ -1,0 +1,24 @@
+<div id="nav">
+  <div><%= link_to "SPOOKD.ME", root_url, id: "logo" %></div>
+  <div><%= inline_svg 'ghost.svg', class: 'ghost' %></div>
+  <div>
+    <% if current_user %> 
+      <span><%= link_to "ACCOUNT", account_url %></span>
+      <span><%= link_to "LOG OUT", signout_path %></span>
+    <% else %>
+      <span><%= link_to "LOG IN", '/auth/facebook' %></span>
+    <% end %>
+  </div>
+
+  <div id="hamburger">
+    <ul>
+      <i class='fa fa-bars'></i>
+    </ul>
+  </div>
+</div>
+
+<script>
+  $('#hamburger').on('click', function() {
+    $('#hide-on-mobile').toggleClass('showing');
+  });
+</script>

@@ -1,0 +1,107 @@
+<% provide(:title, @article.title) %>
+<% provide(:description, @article.tagline) %>
+<% provide(:share_image, @article.cover.url(:medium)) %>
+
+<div class="article-page">
+	<div id="header" class="container">
+		<div class="content-pad">
+			<div class="image" style="background-image: url(<%=@article.cover.url(:medium)%>)"></div>
+		</div>
+		<div class="title" align="center">
+			<div class="content-pad" align="left">
+				<h1><%=@article.title%></h1>
+				<h2><%=@article.tagline%></h2>
+			</div>
+		</div>
+	</div>
+	<div id="body" class="container">
+		<div id="left-sidebar">
+			
+		</div>
+		<div id="content">
+			<div id="admin-controls">
+				<% if current_user && current_user.admin %>
+					<%= link_to 'Edit', edit_article_path(@article) %>
+				<% end %>
+				<hr>
+			</div>
+			<article>
+			  <% if @article.content != "" && @article.content != nil %>
+			  	<% content_pre = @article.content.html_safe %>
+				<% story_id_array = content_pre.scan(/%sto%(.*)%sto%/) %>
+				<% story_id_array.each do |id| %>
+					<% @story = nil %>
+					<% begin %>
+						<% @story = Story.find(id[0])%>
+					<% rescue %>
+					<% end %>
+					<% if @story %>
+						<% content_pre = content_pre.sub(/%sto%#{id[0]}%sto%/) { 
+							render partial: 'stories/story_embed', locals: {story: @story} 
+						}%>
+					<% else %>
+						<% content_pre = content_pre.sub(/%sto%#{id[0]}%sto%/) { "&lt;Missing story!&gt;" }%>
+					<% end %>
+				<% end %>
+
+				<% pic_id_array = content_pre.scan(/%pic%(.*)%pic%/) %>
+				<% pic_id_array.each do |id| %>
+					<% @pic = nil %>
+					<% begin %>
+						<% @pic = Picture.find(id[0])%>
+					<% rescue %>
+					<% end %>
+					<% if @pic %>
+						<% content_pre = content_pre.sub(/%pic%#{id[0]}%pic%/) { 
+							render partial: 'pictures/picture_embed', locals: {picture: @pic} 
+						}%>
+					<% else %>
+						<% content_pre = content_pre.sub(/%pic%#{id[0]}%pic%/) { "&lt;Missing picture!&gt;" }%>
+					<% end %>
+				<% end %>
+
+				<% content_pre = content_pre.gsub(/%%ad%%/) { render 'shared/ad_embed' }%>
+
+			  	<%= content_pre.html_safe %>
+
+				<div class="tags" style="margin-top: 40px;">
+					<%@article.tags.each do |tag|%>
+					<a href="<%=tag_url(tag)%>">
+						<span><p><%=tag.name%></p></span></a>
+					<%end%>
+				</div>
+			  <% end %>
+			</article>
+		</div>
+		<div id="right-sidebar">
+			<div class="pad less"><h3>Related</h3></div>
+			<div class="article-nibs-container">
+				<% @related_articles.each do |a| %>
+				<div class="pad">
+					<%= render partial: 'articles/article_nib', locals: {article: a} %>
+				</div>
+					<hr>
+				<% end %>
+			</div>
+		</div>
+		<div class="container content-pad">
+			<div class="hr"><hr></div>
+		</div>
+	</div>
+	<div class="fb-comment-container" align="center">
+		<div class="fb-comment-pad">
+			<div class="fb-comment-width">
+				<div class="fb-comments" data-href="<%= request.original_url %>" data-width="100%" data-numposts="5"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style>
+	.container.body {
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
+	}
+</style>

@@ -1,0 +1,38 @@
+<% provide(:title, params[:q]) %>
+
+<div align="center" style="margin: 15px 0px;">
+	<form action="<%= search_url %>" id="home-search">
+		<div class="col-md-6 col-md-offset-3">
+			<i class="fa fa-search"></i><input type="text" name="q" style="opacity: 1;" placeholder="stories, articles, screenshots, tags...">
+		</div>
+	</form>
+</div>
+<% if @stories.count > 0 %>
+	<div>
+		<div class="stories-container">
+			<% @stories.each do |story| %>
+				<%= render(partial: 'stories/story', locals: {story: story}) %>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+<% if @articles.count > 0 %>
+	<div align="center">
+		<div class="article-nibs-container" style="width: 90%; max-width: 550px;" >
+			<hr>
+			<% @articles.each do |article| %>
+				<%= render(partial: 'articles/article_nib', locals: {article: article}) %>
+				<hr>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+<% if @pictures.count > 0 %>
+	<div class="screenshot-container">
+		<% @pictures.each do |picture| %>
+			<a href="<%=picture_url(picture)%>">
+				<div class="screenshot" style="background-image: url(<%=picture.avatar.url(:medium)%>)"></div>
+			</a>
+		<% end %>
+	</div>
+<% end %>

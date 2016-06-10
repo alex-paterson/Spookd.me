@@ -1,0 +1,25 @@
+footer {
+	background-color: #3CB2E2;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    div {
+    	margin: 30px;
+    }
+    span {
+		margin: 10px 0px;
+		display: block;
+    }
+	a {
+		&:hover, &:active, &:link, &:visited {
+			color: white;
+			font-family: Walkway;
+		}
+	}
+}

@@ -1,0 +1,9 @@
+<a href="<%=article_path(article)%>">
+	<div class="article-nib">
+		<div class="img" style="background-image: url(<%=article.cover.url(:medium)%>)"></div>
+		<div class="text">
+			<h3><%= article.title %></h3>
+			<p><%= article.tagline %></p>
+		</div>
+	</div>
+</a>

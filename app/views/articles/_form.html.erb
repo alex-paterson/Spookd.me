@@ -1,0 +1,83 @@
+<div align="center">
+  <div class="new-article-form">
+    <%= form_for(@article) do |f| %>
+      <div class="pad">
+        <% if @article.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+            <ul>
+            <% @article.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :title %><br>
+          <%= f.text_field :title %>
+        </div>
+        <div class="field">
+          <%= f.label :tagline %><br>
+          <%= f.text_field :tagline %>
+        </div>
+        <div class="field">
+          <%= f.label :content, "Content (HTML) - %sto%id%sto%, %pic%id%pic, %%ad%%" %><br>
+          <%= f.text_area :content %>
+        </div>
+        <div class="field">
+          <%= f.label :cover %>
+          <%= f.file_field :cover, as: :file %>
+        </div>
+        <div class="field">
+          <%= f.label :public %>
+          <%= f.check_box :public %>
+        </div>
+        <div class="field">
+          <%= f.label :related_articles, "Related Articles, (by id, comma seperated)" %>
+          <%= f.text_field :related_articles %>
+        </div>
+        <div class="field">
+          <input name="article[all_tags]" type="hidden" value="<%=@article.all_tags%>" />
+        </div>
+        <div class="field">
+          <%= f.label :tags %>
+          <ul id="tags">
+            <% @article.tags.each do |tag| %>
+              <li><%=tag.name%></li>
+            <% end %>
+          </ul>
+        </div>
+
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function updateTagHiddenField() {
+    $('input[name="article[all_tags]"]').attr('value', $("#tags").tagit("assignedTags"))
+  }
+  $(document).ready(function() {
+    $("#tags").tagit({
+      fieldName: "tag_words",
+      afterTagAdded: function(event, ui) {
+        updateTagHiddenField()
+        console.log(ui.tag)
+      },
+      beforeTagRemoved: function(event, ui) {
+        console.log(ui.tag);
+      }
+    });
+  });
+  $("input[type='text']").change(function() {
+    $(this).css('background-color', 'rgba(255,255,255,0.1)')
+  })
+  $("textarea").change(function() {
+    $(this).css('background-color', 'rgba(255,255,255,0.1)')
+  })
+</script>

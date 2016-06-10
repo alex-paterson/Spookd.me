@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  description: MyText
+  followers: 1
+  frequency: 1
+  fullname: MyString
+  user_id: 
+  verified: false
+
+two:
+  username: MyString
+  description: MyText
+  followers: 1
+  frequency: 1
+  fullname: MyString
+  user_id: 
+  verified: false

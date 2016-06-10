@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <!-- title -->
+  <title><%= full_title(yield(:title)) %></title>
+  <meta property='og:title' content='<%= full_title(yield(:title)) %>'>
+  <meta name='twitter:title' content='<%= full_title(yield(:title)) %>'>
+
+  <!-- url -->
+  <meta property='og:url' content='<%= request.original_url %>'>
+  <meta name='twitter:url' content='<%= request.original_url %>'>
+  <link rel='canonical' href='<%= request.original_url %>'>
+
+  <!-- desc -->
+  <meta name='description' content='<%= description(yield(:description)) %>'>
+  <meta property='og:description' content='<%= description(yield(:description)) %>'>
+  <meta name='twitter:description' content='<%= description(yield(:description)) %>'>
+
+  <!-- image -->
+  <meta property="og:image" content="<%= share_image(yield(:share_image)) %>">
+  <meta property="og:image:url" content="<%= share_image(yield(:share_image)) %>">
+  <meta name="twitter:image" content="<%= share_image(yield(:share_image)) %>">
+
+  <!-- ua -->
+  <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+
+  <!-- viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> 
+
+  <!-- icons -->
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- style & script -->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <style>
+	@font-face {
+	    font-family: Walkway;
+	    src: url("<%=asset_url 'walkway.ttf'%>");
+	}
+  </style>
+
+  <!-- analytics -->
+  <meta name="google-site-verification" content="KvZ1ai8kj9dibOQSxdH8ERT-v5HlnkEaIuVSn4egeag" />
+
+</head>
+<body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1507908736185501";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <%= render 'layouts/navbar' %>
+
+  <script>
+  $(document).ready( function() {
+    $('#flash-container').delay('3000').fadeOut('300')
+  });
+  </script>
+  <div id="flash-container">
+    <div>
+      <% flash.each do |key, value| %>
+        <div><%= value %></div>
+      <% end %> 
+    </div>
+  </div>
+
+  <%= yield %>	
+
+  <%= render 'layouts/footer' %>
+
+</body>
+</html>

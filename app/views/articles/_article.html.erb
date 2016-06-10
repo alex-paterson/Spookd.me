@@ -1,0 +1,8 @@
+<a href="<%=article_path(article)%>" class="article">
+	<div class="article" style="background-image: url(<%=article.cover.url(:medium)%>); overflow: hidden;">
+			<div class="text">
+				<h3><%= article.title %></h3>
+				<p><%= article.tagline %></p>
+			</div>
+	</div>
+</a>

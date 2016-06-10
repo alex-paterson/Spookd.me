@@ -1,0 +1,14 @@
+<% provide(:title, "Account") %>
+
+<div align="center">Logged in as: <%= current_user.name %></div>
+
+<h1 style="text-align: center; margin: 20px 0px;">YOUR STORIES</h1>
+
+<div align="center" id="add-container" style="margin-bottom: 30px;">
+	<a href="<%=new_story_url%>"><i class="fa fa-plus-circle" style="color: #9b5d9c"></i></a>
+</div>
+<div class="stories-container" style="margin-bottom: 30px;">
+	<% @stories.each do |story| %>
+		<%= render(partial: 'stories/story', locals: {story: story}) %>
+	<% end %>
+</div>

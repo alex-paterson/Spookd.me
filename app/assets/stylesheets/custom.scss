@@ -1,0 +1,123 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
+
+* {
+    margin: 0px;
+    padding: 0px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    font-family: 'PT Serif', serif;
+    color: black;
+    &:hover, &:active, &:link, &:visited { text-decoration: none }
+}
+a {
+    &:hover, &:active, &:link, &:visited { text-decoration: none }
+    &:hover, &:active {
+        color: #3CB2E2;
+    }
+}
+
+.hr {
+    background-color: white;
+    width: 100%;
+}
+
+hr {
+    color: #EEE;
+    margin: 8px 0px;
+    border: none;
+    border-top: dotted 1px;
+}
+
+
+.container {
+    background-color: #EEE;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.content-pad {
+    width: 1002px;
+    @media all and (min-width: 700px) and (max-width: 1020px) {
+        width: 701px;
+    }  
+    @media all and (max-width: 700px) {
+        width: 95%;
+    }  
+}
+
+.fb-comment-container {
+    background-color: #EEE;
+    padding-bottom: 30px;
+    .fb-comment-pad {  
+        width: 1002px;
+        background-color: white;
+        padding-bottom: 30px;
+        @media all and (min-width: 700px) and (max-width: 1020px) {
+            width: 701px;
+        }  
+        @media all and (max-width: 700px) {
+            width: 95%;
+        }  
+        .fb-comment-width {
+            max-width: 702px;
+        }
+    }
+}
+
+
+.ghost {
+	g {
+		path {
+			stroke: black;
+			stroke-width: 15;
+		}
+	}
+}
+
+.flash-container {
+    position: fixed;
+    top: 6em;
+    width: 100%;
+    z-index: 5000;
+    position: absolute; 
+    top: 80px; 
+    z-index: 3; 
+    width: 100%; 
+    text-align: center;
+    div {
+        box-shadow: 0 0 10px 5px rgba(0,0,0,0.3);
+        border-radius: 5px;
+        padding: 1em;
+        max-width: 400px;
+        display: none;
+        ul {
+            margin: 0px !important;
+        }
+        &.success {
+            color: #4fc63d;
+            border: 1px #4fc63d solid;
+            background-color: #cefcc7;
+        }
+        &.error {
+            color: #E67C84;
+            border: 1px #E67C84 solid;
+            background-color: #F9D1D4;
+        }
+    }
+}
+
+
+
+

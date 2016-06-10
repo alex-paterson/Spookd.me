@@ -1,0 +1,31 @@
+.tags {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: flex-start;
+    padding: 5px 0px;
+    width: 100%;
+    a {
+        margin: 4px 8px 4px 0px;
+        span {
+            p {
+                color: black;
+                display: inline-block;
+                min-width: 30px;
+                text-align: center;
+            }
+            padding: 0px 6px 2px 6px;
+            border: 2px solid black;
+            border-radius: 1em;
+            &:hover, &:active {
+                background-color: black;
+                p {
+                    color: white;
+                }
+            }
+        }
+    }
+}

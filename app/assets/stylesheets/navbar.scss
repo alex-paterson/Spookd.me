@@ -1,0 +1,62 @@
+#nav {
+	background-color: #489B7A;
+	letter-spacing: 2px;
+	
+	padding: 10px 20px;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+	div {
+		#logo {
+			font-size: 2em;
+		}
+		a {
+			font-family: Walkway;
+			color: white;
+			line-height: 50px;
+			&:hover, &:active {
+				color: #97D7B5;
+			}
+		}
+		span {
+			margin: 0px 10px;
+		}
+	}
+
+	#hamburger {
+		display: none;
+		font-size: 2em;
+		color: white;
+	}
+	.ghost {
+		height: 50px;
+		fill: white;
+		margin: auto;
+	}
+}
+
+
+@media screen and (max-width: 770px) {
+	.navbar {
+		#hamburger {
+			padding-top: 0px;
+			display: block;
+			margin-top: 0px;
+			border-top: 1px solid white;
+		}
+		#hide-on-mobile {
+			padding-top: 0px;
+			max-height: 0px;
+			&.showing {
+				max-height: 1000px;
+			}
+		}
+	}
+}

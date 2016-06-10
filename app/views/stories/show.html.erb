@@ -1,0 +1,97 @@
+<% provide(:title, @story.fullname) %>
+<% provide(:description, @story.description) %>
+<% provide(:share_image, @story.avatar.url) %>
+
+<% if @story.url && !(@story.url[/\Ahttp:\/\//] || @story.url[/\Ahttps:\/\//]) %>
+	<% story_url = "http://#{@story.url}"%>
+<% else %>
+	<% story_url = @story.url %>
+<% end %>
+
+<div class="story-view" align="center">
+	<div id="cover">
+		<div class="content-pad" align="left">
+			<div class="container">
+				<div class="profile-pic" style="background-image: url(<%=@story.avatar.url(:thumb)%>)">
+				</div>
+				<div class="title">
+					<h1><%=@story.fullname.upcase%></h1>
+					<h2><%=@story.username%></h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content-pad" align="left">
+		<div class="container">
+			<div id="content" align="center" style="text-align: center;">
+				<div id="description" align="center">
+				  <% if @story.description != "" && @story.description != nil %>
+				  	"<%= @story.description %>"
+				  <% end %>
+				</div>
+				
+				<% if @story.followers %>
+					<p><b>Estimated Followers:</b> <%= @story.followers %></p>
+				<% end %>
+
+				<% if @story.frequency %>
+					<p><b>Estimated Posts Per Day:</b> <%= @story.frequency %></p>
+				<% end %>
+				<% if @story.url %>
+					<p style="text-align: center"><a href="<%=story_url%>"><%= @story.url %></a></p>
+				<% end %>
+
+				<div class="tags">
+					<%@story.tags.each do |tag|%>
+					<a href="<%=tag_url(tag)%>">
+						<span><p><%=tag.name%></p></span></a>
+					<%end%>
+				</div>
+			</div>
+			<div class="hr">
+				<hr>
+			</div>
+		</div>
+		<div class="gallery">
+			<div class="screenshot-container">
+				<div class="add-screenshot">
+					<a href="<%=new_picture_url%>?story=<%=@story.id%>">
+						<i class="fa fa-plus-circle"></i><br>
+						Add A Screenshot
+					</a>
+				</div>
+				<% @story.pictures.each do |picture| %>
+				<a href="<%=picture_url(picture)%>">
+					<div class="screenshot" style="background-image: url(<%=picture.avatar.url(:medium)%>)"></div>
+				</a>
+				<% end %>
+			</div>
+			<div class="hr">
+				<hr>
+			</div>
+		</div>
+	</div>
+
+	<div class="fb-comment-container" align="center">
+		<div class="fb-comment-pad">
+			<div class="fb-comment-width">
+				<div class="fb-comments" data-href="<%= request.original_url %>" data-width="100%" data-numposts="5"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.container.body {
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
+	}
+	<% if @story.verified %>
+		.ghost {
+			height: 33px;
+			float: right;
+			fill: #3CB2E2 !important;
+		}
+	<% end %>
+</style>

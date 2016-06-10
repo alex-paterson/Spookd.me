@@ -1,0 +1,49 @@
+// Place all the styles related to the pictures controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.gallery {
+	padding: 20px 80px 40px 80px;
+	text-align: center;
+	h1 {
+		margin-bottom: 15px;
+	}
+}
+.screenshot-container {
+	.add-screenshot {
+	  padding-top: 100px;
+	  height: 250px;
+	  a {
+		&:hover, &:active, &:link, &:visited {color: #9B5D9C;}
+	  }
+	  i.fa-plus-circle {
+		font-size: 4em;
+		cursor: pointer;
+		color: #9B5D9C;
+		width: 150px;
+		&:hover {
+			color: #BD7EBE;
+		}
+	  }
+	}
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: center;
+	.screenshot {
+		cursor: pointer;
+		height: 250px;
+		width: 150px;
+		margin: 20px;
+		border: 2px solid #9B5D9C;
+		background-position: center;
+		background-size: cover;
+		&:hover {
+			border-color: #BD7EBE;
+		}
+	}
+}
+

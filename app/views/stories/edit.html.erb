@@ -1,0 +1,13 @@
+<% provide(:title, "Edit Story") %>
+
+<h1 style="text-align: center; margin: 15px 0px;">EDITING STORY</h1>
+
+<%= render 'form' %>
+
+<div align="center" id="delete-story-container">
+	<%= form_for @story, method: :delete do |f| %>
+		<div id="delete-story-form">
+			<input type="submit" name="commit" value="Delete Story" id="delete-story-button" data-confirm="Are you sure you want to permanently delete this story?"/>
+		</div>
+	<% end %>
+</div>

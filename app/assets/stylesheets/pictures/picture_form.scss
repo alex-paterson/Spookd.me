@@ -1,0 +1,50 @@
+.new-picture-form {
+	max-width: 400px;
+	background-color: #9B5D9C;
+	text-align: left;
+	font-family: Walkway;
+	margin-bottom: 20px;
+	.pad {
+		padding: 20px 40px 0px 40px;
+	}
+	.field {
+		color: white;
+		margin: 20px 0px;
+		input {
+			background-color: transparent;
+			border: none;
+			color: white;
+			&[type="text"] {
+				font-size: 1.3em;
+				width: 100%;
+				border-bottom: 2px solid white;
+				margin-bottom: 10px;
+				background-color: rgba(255,255,255,0.4);
+			}
+			&[type="date"] {
+				background-color: rgba(255,255,255,0.4);
+			}
+		}
+		label {
+			color: white;
+			display: inline-block;
+			min-width: 80px;
+		}
+	}
+	input {
+		display: inline-block;
+		&[type="submit"] {
+			background-color: #489B7A;
+			width: 100%;
+			font-size: 2em;
+			color: white;
+			border: none;
+			padding: 10px 0px;
+			margin-top: 25px;
+		}
+	}
+}
+
+
+
+

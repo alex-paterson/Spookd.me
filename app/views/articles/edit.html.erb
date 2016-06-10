@@ -1,0 +1,13 @@
+<% provide(:title, "Edit Article") %>
+
+<h1 style="text-align: center; margin: 15px 0px;">EDIT ARTICLE</h1>
+
+<%= render 'form' %>
+
+<div align="center" id="delete-article-container">
+	<%= form_for @article, method: :delete do |f| %>
+		<div id="delete-article-form">
+			<input type="submit" name="commit" value="Delete Article" id="delete-article-button" data-confirm="Are you sure you want to permanently delete this article?"/>
+		</div>
+	<% end %>
+</div>
