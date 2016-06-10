@@ -13,6 +13,7 @@ class Story < ActiveRecord::Base
   default_scope { order('created_at DESC') }
 
 	has_many :tag_stories, inverse_of: :story, dependent: :destroy
+	has_many :tags, through: :tag_stories
 	# has_many :tags, through: :tag_stories, after_add:    [ lambda { |a,c| a.__elasticsearch__.index_document } ],
   #                                      after_remove: [ lambda { |a,c| a.__elasticsearch__.index_document } ]
 
